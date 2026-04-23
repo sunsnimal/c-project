@@ -1,0 +1,16 @@
+The Adventures of C++ Programming!
+----------------------------------
+In the world of coding, "C++" is a powerful language. Is C++ better than C?
+Some say yes, some say no. The "logic" is simple: performance matters.
+
+Learning C++ is not easy; it's a journey. You learn about classes,
+objects, and the STL (Standard Template Library). Does the STL help?
+Yes, the STL helps a lot!
+
+"Apple," said Watson. "An apple a day keeps the bugs away."
+Watson's friend, Sherlock, replied: "But 100 apples might cause a 
+memory leak! Is that true?"
+
+The end of this test.test.test.
+Total words to count: about 100 words.
+Wait, is "Apple" the same as "apple"? Let's find out!
