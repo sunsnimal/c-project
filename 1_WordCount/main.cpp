@@ -2,13 +2,18 @@
 #include <fstream>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
 #include <cctype>
 #include <vector>
+#include <sstream>
 
 std::string cleanWord(std::string word);
 
 int main(int argc, char* argv[]) {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
     if(argc < 2){
         std::cout << "用法：" << argv[0] << " <文件名> [TopN数量] [导出文件名.csv]" <<std::endl;
         return 1;
@@ -22,17 +27,21 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    file.close();
+
     std::string word;
     std::unordered_map<std::string, int> wordCount;
+    wordCount.reserve(10000);
 
-    while (file >> word){
+    while (buffer >> word){
         std::string cleaned = cleanWord(word);
         if(!cleaned.empty()){
             wordCount[cleaned]++;
         }
     }
 
-    file.close();
     std::vector<std::pair<std::string, int>> sortedWords(wordCount.begin(), wordCount.end());
     std::sort(sortedWords.begin(), sortedWords.end(), [](const auto& a, const auto& b){
         return a.second > b.second;
@@ -59,6 +68,10 @@ int main(int argc, char* argv[]) {
 }
 
 std::string cleanWord(std::string word){
+    //停用词表（P3 需求）
+    static const std::unordered_set<std::string> stopWords = {
+        "the", "and", "a", "an", "of", "to", "in", "is", "it", "that", "on", "for", "with", "as"
+    };
     //转小写
     std::transform(word.begin(), word.end(), word.begin(), 
             [](unsigned char c) {return std::tolower(c);});
@@ -69,7 +82,7 @@ std::string cleanWord(std::string word){
             word.end());
 
     //过滤纯数字
-    if (word.empty() || std::all_of(word.begin(), word.end(), ::isdigit)) {
+    if (word.empty() || std::all_of(word.begin(), word.end(), ::isdigit) || stopWords.count(word)) {
         return "";
     }
 
