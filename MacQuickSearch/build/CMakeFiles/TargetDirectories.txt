@@ -1,0 +1,3 @@
+/Users/diannao/Desktop/C++/project/MacQuickSearch/build/CMakeFiles/scanner.dir
+/Users/diannao/Desktop/C++/project/MacQuickSearch/build/CMakeFiles/edit_cache.dir
+/Users/diannao/Desktop/C++/project/MacQuickSearch/build/CMakeFiles/rebuild_cache.dir
